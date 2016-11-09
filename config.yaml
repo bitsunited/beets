@@ -1,0 +1,36 @@
+library: /storage/media/music/beetsdata/musiclibrary.blb
+
+directory: /storage/media/music
+
+import:
+    copy: no
+    move: no
+    write: yes
+    resume: ask
+    quiet_fallback: skip
+    timid: no
+    log: /storage/media/music/beetsdata/beetslog.txt
+
+art_filename: cover
+
+plugins: inline embedart fetchart missing info 
+
+threAded: yes
+
+ui:
+    color: yes
+
+paths:
+    default: Albums by Artist/$albumartist/$album%aunique{}/($album - $disctrack) $artist - $title
+    singleton: Singletons/$artist - $title
+    comp: Sampler/$album%aunique{}/($album - $disctrack) $artist - $title
+#   albumtype:soundtrack: Soundtracks/$album%aunique{}/($album - $disctrack) $artist - $title
+
+missing:
+    format: $albumartist - $album - $title
+    count: yes
+    total: yes
+
+item_fields:
+    disctrack: u'%02i-%02i' % (disc, track) if
+               disctotal > 1 else u'%02i' % (track)
